@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "layer": [{"data": {"name": "data-f7f78bfbaf0762da605aae557a69ca63"}, "mark": {"type": "point"}, "encoding": {"color": {"value": "black"}, "tooltip": [{"field": "Actual", "type": "quantitative"}, {"field": "Predicted", "type": "quantitative"}], "x": {"field": "Actual", "type": "quantitative"}, "y": {"field": "Predicted", "type": "quantitative"}}, "transform": [{"calculate": "random()", "as": "jitter"}]}, {"data": {"name": "data-c3669ebb30e24a00fb5512c8613095f5"}, "mark": {"type": "line", "color": "red"}, "encoding": {"x": {"field": "Actual", "scale": {"domain": [0.0, 0.4]}, "type": "quantitative"}, "y": {"field": "Predicted", "scale": {"domain": [0.0, 0.4]}, "type": "quantitative"}}}], "height": 200, "width": 200, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-f7f78bfbaf0762da605aae557a69ca63": [{"Actual": 0.226, "Predicted": 0.20685181383336754}, {"Actual": 0.1, "Predicted": 0.0966704129966283}, {"Actual": 0.296, "Predicted": 0.30549872505114745}, {"Actual": 0.269, "Predicted": 0.2927107365603371}, {"Actual": 0.109, "Predicted": 0.09826831155851959}], "data-c3669ebb30e24a00fb5512c8613095f5": [{"Actual": 0.0, "Predicted": 0.0}, {"Actual": 0.4, "Predicted": 0.4}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
